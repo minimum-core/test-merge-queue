@@ -1,0 +1,11 @@
+on:
+  pull_request:
+  merge_group:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    permissions: {}
+    steps:
+      - run: env | grep GITHUB
+        env:
+          PAYLOAD: ${{ toJson(github)}}
