@@ -4,8 +4,15 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+    if: github.event_name != 'merge_group'
     permissions: {}
     steps:
       - run: env | grep GITHUB
         env:
           PAYLOAD: ${{ toJson(github)}}
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'merge_group'
+    permissions: {}
+    steps:
+      - run: sleep 30
